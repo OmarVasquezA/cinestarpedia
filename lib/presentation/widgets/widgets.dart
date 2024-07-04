@@ -8,4 +8,7 @@ export 'package:cinemapedia/presentation/widgets/movies/movie_slideshow.dart';
 
 export 'package:cinemapedia/presentation/widgets/shared/custom_appbar.dart';
 
+export 'movies/movie_masonry.dart';
+
+export 'movies/movie_poster_link.dart';
 

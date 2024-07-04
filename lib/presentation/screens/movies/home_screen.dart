@@ -7,10 +7,10 @@ class HomeScreen extends StatelessWidget {
 
   const HomeScreen({super.key});
 
+  final viewRoutes = const <Widget>[HomeView(), SizedBox(), FavoritesView()];
+
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: HomeView()
-    );
+    return  Scaffold(body: IndexedStack(children: viewRoutes,));
   }
 }

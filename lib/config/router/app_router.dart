@@ -1,5 +1,6 @@
 import 'package:cinemapedia/presentation/screens/screens.dart';
-import 'package:cinemapedia/presentation/views/movies/favorites_view.dart';
+import 'package:cinemapedia/presentation/views/movies/categories_view.dart';
+import 'package:cinemapedia/presentation/views/views.dart';
 import 'package:cinemapedia/presentation/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -10,6 +11,7 @@ final _sectionNavigatorKey = GlobalKey<NavigatorState>();
 final appRouter =
     GoRouter(navigatorKey: _rootNavigatorKey, initialLocation: '/', routes: [
   StatefulShellRoute.indexedStack(
+    
       builder: (context, state, navigationShell) {
         return CustomBottonNavigationBar(navigationShell: navigationShell);
       },
@@ -31,7 +33,7 @@ final appRouter =
         StatefulShellBranch(routes: [
           GoRoute(
             path: '/categories',
-            builder: (context, state) => const FavoritesView(),
+            builder: (context, state) => const CategoriesView(),
           )
         ]),
         StatefulShellBranch(routes: [
