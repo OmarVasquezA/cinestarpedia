@@ -1,6 +1,6 @@
 import 'package:animate_do/animate_do.dart';
-import 'package:cinemapedia/config/helpers/human_formats.dart';
 import 'package:cinemapedia/domain/entities/movie.dart';
+import 'package:cinemapedia/presentation/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -89,23 +89,15 @@ class _Slide extends StatelessWidget {
             width: 150,
             child: ClipRRect(
               borderRadius: BorderRadius.circular(20),
-              child: Image.network(
-                movie.posterPath,
-                fit: BoxFit.cover,
-                loadingBuilder: (context, child, loadingProgress) {
-                  if (loadingProgress != null) {
-                    return const Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: Center(
-                          child: CircularProgressIndicator(strokeWidth: 2)),
-                    );
-                  }
-                  return GestureDetector(
-                    onTap: () => context.push('/movie/${movie.id}'),
-                    child:  FadeIn(child: child)
-                  );
-                },
-              ),
+              child: GestureDetector(
+                onTap: () => context.push('/movie/${movie.id}'),
+                child: FadeInImage(
+                  height: 220,
+                  fit: BoxFit.cover,
+                  placeholder: const AssetImage('assets/loaders/bottle-loader.gif'),
+                  image: NetworkImage(movie.posterPath),
+                ),
+              )
             ),
           ),
 
@@ -122,22 +114,7 @@ class _Slide extends StatelessWidget {
           ),
 
           //* Rating
-          SizedBox(
-            width: 140,
-            child: Row(
-              children: [
-                Icon(Icons.star_half_rounded, color: Colors.yellow.shade800),
-                const SizedBox(width: 3),
-                Text(HumanFormats.numberVotes(movie.voteAverage),
-                    style: textStyle.bodyMedium
-                        ?.copyWith(color: Colors.yellow.shade800)),
-                const Spacer(),
-                Text(HumanFormats.number(movie.popularity),
-                    style: textStyle.bodyMedium)
-                //Text('${movie.popularity}', style: textStyle.bodyMedium)
-              ],
-            ),
-          )
+          MovieRating(voteAverage: movie.voteAverage)
         ],
       ),
     );
@@ -156,7 +133,7 @@ class _Titles extends StatelessWidget {
 
     return Container(
       padding: const EdgeInsets.only(top: 10),
-      margin: const EdgeInsets.symmetric(horizontal: 10),
+      margin: const EdgeInsets.symmetric(horizontal: 10,vertical: 3),
       child: Row(
         children: [
           if (title != null) Text(title!, style: titleStyle),

@@ -14,16 +14,19 @@ class CustomBottonNavigationBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
+    final colors = Theme.of(context).colorScheme;
+
     return Scaffold(
         body: navigationShell,
         bottomNavigationBar: BottomNavigationBar(
           elevation: 0,
+          selectedItemColor: colors.primary,
           currentIndex: navigationShell.currentIndex,
           items: const [
             BottomNavigationBarItem(
                 icon: Icon(Icons.home_max), label: 'Inicio'),
             BottomNavigationBarItem(
-                icon: Icon(Icons.label_outline), label: 'Categoría'),
+                icon: Icon(Icons.thumbs_up_down_outlined), label: 'Populares'),
             BottomNavigationBarItem(
                 icon: Icon(Icons.favorite_outline), label: 'Favoritos')
           ],

@@ -5,13 +5,12 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 import 'package:cinemapedia/config/theme/app_theme.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:intl/date_symbol_data_local.dart';
 
-Future<void> main() async{
-
+Future<void> main() async {
   await dotenv.load(fileName: ".env");
 
-  runApp(const ProviderScope(child: MainApp())
-  );
+  runApp(const ProviderScope(child: MainApp()));
 }
 
 class MainApp extends StatelessWidget {
@@ -19,10 +18,10 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  MaterialApp.router(
-      routerConfig: appRouter,
-      debugShowCheckedModeBanner: false,
-      theme: AppTheme().getTheme()
-    );
+    initializeDateFormatting();
+    return MaterialApp.router(
+        routerConfig: appRouter,
+        debugShowCheckedModeBanner: false,
+        theme: AppTheme().getTheme());
   }
 }

@@ -50,7 +50,7 @@ class FavoritesViewState extends ConsumerState<FavoritesView> {
                 style: TextStyle(fontSize: 30, color: colors.primary)),
             const Text(
               'No tienes películas favoritas mi rey',
-              style: TextStyle(fontSize: 20, color: Colors.black45),
+              style: TextStyle(fontSize: 20),
             ),
             const SizedBox(height: 20),
             FilledButton(onPressed: () => context.go('/'), child: const Text('Empiece a buscar'))
